@@ -3,12 +3,18 @@
     <head>
         <title> Jerry's First Website</title>
         <style>
+        
             body {
-                background: rgb(125, 198, 205);
+                background: rgb(230, 198, 205);
                 color: rgb(100, 45, 45);
                 padding: 10px;
                 font-family: arial;
+        
             }
+            Body {
+            background-image: url("https://cdn.pixabay.com/photo/2016/11/22/23/03/hardwood-1851071__340.jpg");
+            }
+            
             header {
                 font-size: 1.2em;
                 font-weight: bold;
@@ -18,7 +24,7 @@
             }
 
             #all-contents {
-                max-width: 800px;
+                max-width: 540px;
                 margin: auto;
                 font-family: optima;
                 
@@ -53,20 +59,23 @@
 
             /* main container area beneath menu */
             main {
-                background: rgb(100, 238, 219);
-                display: flex;
+                background: rgb(50, 134, 138);
+                border-radius: 5% 0% 40%;
+                /* display: flex; */
             }
            
             .sidebar {
-                margin-right: 25px;
+                margin-right: 0px;
                 padding: 10px;
             }
             .sidebar img {
-                width: 200px;
+    
+                width: 220px;
+                height: 290;
             }
             .content {
                 flex: 1;
-                padding: 30px;
+                padding: 0px;
             }
             .interests header {
                 color:blue;
@@ -77,6 +86,7 @@
     
     <body>
         <div id="all-contents">
+            
             <nav>
                 <header><h1>Jerry's First Website!</h1></header>
                 <ul>
@@ -87,12 +97,12 @@
             
             <main>
                 <div class="sidebar">
-                    <img src="https://scontent-dfw5-1.xx.fbcdn.net/v/t1.0-9/s960x960/40169474_2249854558375454_742988273730715648_o.jpg?_nc_cat=109&_nc_ohc=5TXxX7wB1sMAX9f_5tg&_nc_ht=scontent-dfw5-1.xx&oh=549b7edc806a9655b645bad3e126c4d4&oe=5EC4377D" alt="Me and my Dad!" width="240" height="240" border="5" style="margin-left:40px">
-                
-                 <img src="https://scontent-dfw5-1.xx.fbcdn.net/v/t1.0-9/45628124_2349544551739787_35657428376748032_n.jpg?_nc_cat=105&_nc_ohc=-H2VdXIGENAAX9siqiM&_nc_ht=scontent-dfw5-1.xx&oh=25fe213d92c5aabbdb3048a440ecf5c3&oe=5ECBE5C8" alt="Me and the Fam!" width="240" height="240" border="5" style="margin-left:50px">
-
-                <div class="content,">
-                    <h1 style="padding-left:160px">Jerry McDonald</h1>
+                    
+                    <img src="https://scontent-dfw5-1.xx.fbcdn.net/v/t1.0-9/s960x960/40169474_2249854558375454_742988273730715648_o.jpg?_nc_cat=109&_nc_ohc=5TXxX7wB1sMAX9f_5tg&_nc_ht=scontent-dfw5-1.xx&oh=549b7edc806a9655b645bad3e126c4d4&oe=5EC4377D" alt="Me and my Dad!" width="240" height="240" border="5" style="margin-left: 10px; border-radius: 10% 30%">
+                 <img src="https://scontent-dfw5-1.xx.fbcdn.net/v/t1.0-9/45628124_2349544551739787_35657428376748032_n.jpg?_nc_cat=105&_nc_ohc=-H2VdXIGENAAX9siqiM&_nc_ht=scontent-dfw5-1.xx&oh=25fe213d92c5aabbdb3048a440ecf5c3&oe=5ECBE5C8" alt="Me and the Fam!" width="240" height="240" border="5" style="margin-left: 30px; border-radius: 10% 30%">
+                </div>
+                <div class="content">
+                    <header><h1 style="padding-left:0px">Jerry McDonald</h1></header>
                     <p style="padding-left:200px; color:red">Student At OP Spark!</p>
                <section class="interests">
                    <header>Interests:</header>
@@ -101,12 +111,11 @@
                        <li>Spending lots of time with the fam</li>
                        <li>Gardening</li>
                    </ul>
-                   
+                  
                    
                </section>
                
                
-                </div>
                 </div>
             </main>
         </div>
