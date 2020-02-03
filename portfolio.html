@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Jerry's First Website</title>
+        <style>
+        
+            body {
+                background: rgb(230, 198, 205);
+                color: rgb(100, 45, 45);
+                padding: 10px;
+                font-family: arial;
+        
+            }
+            Body {
+            background-image: url("https://cdn.pixabay.com/photo/2016/11/22/23/03/hardwood-1851071__340.jpg");
+            }
+            
+            header {
+                font-size: 1.2em;
+                font-weight: bold;
+                padding-left: 130px;
+                font-family: optima;
+                
+            }
+
+            #all-contents {
+                max-width: 540px;
+                margin: auto;
+                font-family: optima;
+                
+            }
+
+            /* navigation menu */
+            nav {
+                background: rgb(110, 200, 141);
+                margin: 20px auto;
+                display: flex;
+                padding: 10px;
+                border-radius: 10% 30% 50% ;
+            }
+            nav header {
+                display: flex;
+                align-items: center;
+                color: rgb(100, 255, 255);
+                flex: 1;
+                margin-left:100px;
+            }
+            nav ul {
+                list-style-image: none;
+            }
+            nav li {
+                display: inline-block;
+                padding: 0 10px;
+            }
+            nav a {
+                text-decoration: none;
+                color: #fff;
+            }
+
+            /* main container area beneath menu */
+            main {
+                background: rgb(50, 134, 138);
+                border-radius: 5% 0% 40%;
+                /* display: flex; */
+            }
+           
+            .sidebar {
+                margin-right: 0px;
+                padding: 10px;
+            }
+            .sidebar img {
+    
+                width: 220px;
+                height: 290;
+            }
+            .content {
+                flex: 1;
+                padding: 0px;
+            }
+            
+           /* portfolio styles */
+            #portfolio {
+                list-style-type: none;
+                padding-left: 0;
+            }
+
+            #portfolio li {
+                background: #fff;
+                padding: 10px;
+                border-radius: 10px;
+                margin-bottom: 10px;
+            }
+
+            #portfolio li:hover {
+                background: #eee;
+            } 
+
+            #portfolio a {
+                text-decoration: none;
+                color: #454545;
+            }
+        </style>
+
+
+    <body>
+        <div id="all-contents">
+                <nav>
+                <header><h1>Jerry's First Website!</h1></header>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                </ul>
+                </nav>
+            <main>
+                <div class="content">
+                    <h1>Portfolio</h1>
+                    <ul id='portfolio'>
+                        
+                    </ul>
+                </div>
+            </main>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script id="portfolioScript">$(document).ready(function() {$.getJSON('projects/projects.json').then(function(data) { data.projects.forEach(function(project){ $('#portfolio').append('<li><a href="projects/' + project.name + '/">' + project.title + ' : ' + project.description + '</a></li>'); }); }); });</script>
+    </body>
+</html>
