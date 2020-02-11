@@ -110,7 +110,7 @@
 
                 /*9/ NaN */
      // NaN is considered in javascript to be not a number
-     // It is most often returned when math functions do
+     // It is most often returned when cdmath functions do
      //   not make any sense. 
      // It can also be returned when you try to add to an 
      //    undefined value. 
@@ -145,12 +145,3 @@
      // reference values are not copied. They reference a value inside of a complex data type. That can change
      // dynamically
         
-        
-
-
-
-/*
-Infinity and -Infinity (Google them if you don't know!)
-What is the difference between primitive/simple and complex data types?
-Primitive values are passed to a function BY COPY, complex values are BY REFERENCE. What does that mean, and how are they different?
-*/

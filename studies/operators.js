@@ -62,7 +62,7 @@
         // Concatination example, because at least one of the operands is a string
         //   the values will be joined (aka concatinated) into a string. Notice that we included 
         //   adding a space to the string to seperate the words. 
-             let y = 'I love to' + ' ' + 'code.' // y is equal to 'I love to code.'
+             let y = 'I love to' + ' ' + 'code.'; // y is equal to 'I love to code.'
 
                                    
         // The - arithmetic operator will subtract two numbers from one another. The operator
@@ -76,7 +76,7 @@
              let math = 2 * 2; 
              console.log(math); // prints to the console 4
              math = math / 2;
-             console.log(math) // prints to the console 2
+             console.log(math); // prints to the console 2
              
         // Like we talked about in Assignment operators. The % operator will divide 
         // the left value by the right, but it will only return the remainder. This
@@ -102,21 +102,85 @@
             var stringOneThru5 = '12345';
             
             
-        // !== strict inequality
+        //           !== inequality & strict inequality
+        //  Like equality, inequality will compare two values even if they 
+        //    are not the same type. Jacascript will attempt to compare them as the 
+        //    same type.
+              
+              // two is not equal to 3        
+               2 != '3';      // -> true
+               'four' != 4;   // => true
+              // dif type but same number 
+              '4' != 4;       // -> false
+               1  != '1';     // -> false
+              // the value of 0 is false
+              false != 0;     // -> false
+              // true is equal to 1
+              true  != 1;     // -> false
+              
+        //  Strict inequality does care about what data type the value is
+              '4' !== 4;               // -> true
+               1  !== '1';             // -> true
+              // the value of 0 is false, but they are not the same type
+              false != 0;              // -> true
+              // true is equal to 1, but not strictly equal to 1
+              true  != 1;              // -> true
+              // same type same value will return false
+              4 !== 4;                 // -> false
+              true !== true;           // -> false
+              'example' !== 'example'; // -> false
+              
+        //              > greater than
+        //  The greater than symble will compare two numerical values and if
+        //     the indicated value is bigger will return the boolean value true
+        //     false if not. 
+        //
+               4 > 4;      // -> false
+               2 > 1;      // -> true
+               10 > 1;     // -> true
+               // you can also compare numbers as a string. 
+               2 > '1';     // -> true
+              
+        //              < less than
+        //  Will return true if the operand on the left is less
+               4 < 8;      // -> true
+               2 < 1;      // -> false
+               10 < 1;     // -> false
+               // you can also compare numbers as a string. 
+               2 < '1';     // -> false
+               '5' < 10;    // -> true
         
-        // > greater than
-        
-        // < less than
-        
-        // >= <=
+        //                  >= <=
+        // less than or equal to and greater than or equal to will also return true if the 
+        // numbers are equal
+               10 <= '10';   // true
+               15 >= 15;     // true
+               5  >= 6;      // false
+               2  <= '2';    // true
         
                 /*4/ Logical operators */
                 
-        // || or
+        var one = 1;
+        var two = 2;
+        var six = 6;
+        var nine = 9;
         
-        // && and
+        // In a conditional statement if you want to have an 'or' condition you can use
+        // the symbols ||
         
-        // ! not
+        if ( one === 1 || 3 > six){
+            // this code block will run because one of the conditions are true
+        }
+        
+        // If you want to have an 'and' statement in your conditions then you can use the 
+        //   && symbols
+        
+        if ( one === 1 && 4 > two ){
+            // this code block will run because both conditions are true
+        }
+        if ( nine === 9 && 4 > six){
+            // this code block will not run because one of the conditions are false
+        }
 
 
 
@@ -124,12 +188,49 @@
             //    /*5/ Unary operators (!, typeOf, -)
                 
         // delete
-        
+        // the delete operator will will revome the property of a given value
+           var array = [5, 6, 7];
+           delete array[0];
+           // the zero index of array is still there but there is no value
+           console.log(array); // -->   [ <1 empty item>, 6, 7 ]
+
+        // for objects it removes the property
+           var object = {
+                one: 1,
+                two: 2,
+                three: 3,
+           };
+           delete object.one;
+           console.log(object); // --> { two: 2, three: 3 }
+
+
         // typeof
-        
+        // You can use the typeof operator to return the datatype as a string
+           typeof false;    // --> 'boolean'
+           typeof 'hello';  // --> 'string'
+           typeof 42;       // --> 'number'
+           typeof object;   // --> 'object'
+           // arrays, dates, and null will also return as objects
+           typeof array;    // --> 'object'
+           typeof null;     // --> 'object'
+           typeof new Date();  // --> 'object'
+           
         // void
-
-
+        // The void operator will evaluate an expression and return undefined
+           console.log(void(0));  // prints undefined to console.
+           console.log(void(1+1));  // prints undefined to console.
+           
+           
          //       /*6/ Ternary operator (a ? b : c)
-
-        // takes three conditions 
+         // using the Ternary operator can be a quicker way of creating an
+         // if else statement.
+         // Proper syntex --->   condition ? expression_1 : expression_2;
+         // if the condition is true, expression 1 will be returned, if not
+         // then expression 2 is returned.
+         
+         
+         console.log( 4 > 3 ? '4 is bigger' : '4 is smaller');
+                // prints '4 is bigger' to the console
+                
+         console.log( 10 === '11' ? 'Same age' : 'Different Age');
+                // preints 'Different age' to the console
