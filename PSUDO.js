@@ -12,3 +12,14 @@
 
 
 // Loop over an Object
+
+
+printAlteredString('hello', toUpperCase);
+
+const toUpperCase = function(str) { 
+    return str.toUpperCase(); 
+};
+
+const printAlteredString = function(string, alterString) { 
+    console.log(alterString(string));
+};

@@ -54,7 +54,7 @@ console.log(noises);
 
 // add the noises property from the animal object to our array noises
 
-animal['noises'] = noises
+animal['noises'] = noises;
 
 // using any method we are adding another noise property
 animal.noises[animal.noises.length] = 'bow-wow';
@@ -110,12 +110,12 @@ var cat = {
     species: 'cat',
     name: 'Bosco',
     noises: ['meow', 'Im hungry'],
-}
+};
 var tiger = {
     species: 'tiger',
     name: 'Mike',
     noises: ['Roar!', 'puuuuur'],
-}
+};
 // add both new objects to object animals.
 
 animals.push(cat, tiger);
@@ -134,14 +134,32 @@ var friends = [];
 
 
 // take a random friend from the animal array with a function 
-function getRandom(p1){
+function getRandom(){
+    // helpRounding will hold what i need to * Math.random by
+    let helpRounding = animals.length - 1;
     // array is parameter, return a random index
     // Math.random * the max index of array will pick random #
-    // the Math.round() will take that interger and make it a whole #. 
-    return p1[Math.round(Math.random() * p1.length - 1)];
+    // the Math.round() will take that interger and make it a whole #.
+    return Math.round(Math.random() * helpRounding);
 }
+// tesing to see if my random function works
+console.log(getRandom());
+console.log(getRandom());
+console.log(getRandom());
 
-// get the name from animals into friends randomly 
+// add a random index of animals (name) into friends
+friends.push(animals[getRandom()].name);
+// check my work
+console.log(friends);
+
+
+// find out what index cat is at. (1)
+console.log(animals);
+
+// adding a friends key/value pair our cat object
+animals[1].friends = friends;
+
+
 
 
 /**
