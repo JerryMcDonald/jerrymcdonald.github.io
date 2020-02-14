@@ -23,7 +23,7 @@
      // it will simply run the function
      
      function noParameterFunction (){
-         console.log('Hello!')
+         console.log('Hello!');
      }
      
      noParameterFunction(); // <---- prints to the console 'Hello'
@@ -32,22 +32,27 @@
      // block.
      
      function secondFunction (p1){
-         console.log(p1)
-         };
+         console.log(p1);
+         }
          
      secondFunction ('Hello!'); // <--- prints 'Hello!' to the console
      
-     // if we send a arithmetic expression the the function it will solve
-     // the math problem and send the outcome as the parameter.
+     // What are arguments and how are they related, but different then the
+     //  parameters of a function? The argument is whats sent to the function
+     //  and the parameter becomes what the expression resolves to.
+     //
+     // If we send a arithmetic expression the the function it is the argument,
+     // it will solve the math problem and send the outcome as the parameter.
      
      function functionName (p1){
-         console.log(p1)
-         };
+         console.log(p1);
+         }
 
-     functionName(1+1); // <----  prints 2 to the console
+     functionName(1+1); // (1+1) is the argument. p1 is the outcome of the 
+                        // argument and becomes our parameter.
 
      // Another cool thing about functions is that we can have a nested function
-     // One way to use a nested function is to assign a function to a variable
+     //  One way to use a nested function is to assign a function to a variable
      
      function thirdFunction() {
          console.log('Parent scope');
@@ -58,7 +63,7 @@
      // createing a new function and running thirdFunction will assign a
      //    as the returned function.
      var a = thirdFunction();
-     a() // <--- prints to the console 'nested code'
+     a(); // <--- prints to the console 'nested code'
      
      // It is important to talk about scope when discussing nested functions
      
@@ -80,10 +85,28 @@
                 console.log( globalVar1 );
                 console.log( functionVar1 );
                 // If we create a variable inside of this nested function
-                var nestedFunctionVar1 = 'Im stuck in here!'
+                var nestedFunctionVar1 = 'Im stuck in here!';
                 // that variable will be limited to this code block
                 //   and cannot be used in the above function scope
                 //   or the global scope
+            };
+     }
+         
+         // What if you would like to assign a function to a variable? This 
+         //  will assign to a new variable a reference to the function. It would
+         //  be like giving your function another name to be accessed by.
+         
+           // here a function that returns the remainder of the two parameters 
+           //  divided. 
+           function findRemainder(a, b){
+                      return a % b;
+                      } 
+               // we are assigning a reference variable. 
+               var lookForRemainder = findRemainder;
+               
+               // So now our findRemainder function can be invoked in two ways!
+               console.log(findRemainder(10, 3)); // logs 1 to console
+               console.log(lookForRemainder(6 , 2)); // logs 0 to console
          
          
                 // What are closures?
@@ -92,6 +115,38 @@
                 
                 // lets look at an example that is similar to the one above, 
                 // while also making note of our scopes.
+                
+                function closureExample (a, b){
+                    // This is our function scope, and what you will see
+                    //   is this scope 'closing' around our nested function.
+                    
+                    // two variables that will be function scoped
+                    var functionVarA = a;
+                    var functionVarB = b;
+                    
+                    // now lets return a nested function to explain 'closure'
+                    return function (a) { 
+                        // this nested function will have access to its own 
+                        // parameter (a), and the two function variables above
+                        var nestedVariableA = a;
+                        // functionVarA and functionVarB are 'closed in'
+                        // meaning they will not change from the first time
+                        // they are assigned
+                        return functionVarA + functionVarB + nestedVariableA; 
+                    };
+                }
+                
+                // We are now assigning funFunction to the nested function, while
+                //  giving closureExample two parameters. Those will be closed
+                //  within the function scope
+                var funFunction = closureExample('I ', 'Love ');
+                
+                // Now we can call funFunction and change it's one parameter
+                //   while keeping the two function scoped parameters 
+                //   inside closure example we declaired eairler.
+                console.log(funFunction('Code!')); // logs 'I Love Code'
+                console.log(funFunction('Pizza!')); // logs 'I Love Pizza'
+
                 
                 // We talked eairler a function nested inside a function has
                 // access to both the global scope and the function scope. The
@@ -109,10 +164,7 @@
      
 
 
-7. Closures: Functions form closures around the data they house. If an object returned from the Function and is held in memory somewhere (referenced), 
-that closure stays ALIVE, and data can continue to exist in these closures! (See: our meeting-room app for an example!) (ALSO, see: Understanding JavaScript
-Closures with Ease)
-*/
+
 
 
 

@@ -94,17 +94,20 @@
         //   they will return to us true or false.
         
         // There are two ways to see if variables are equal to one another.
-        // The the equal to (==) will compare the two values as if they
-        //   were the same type.
+        // The loose comparision (==) will check the value but not the data type.
         // And the strictly equal to (===) operator will return true if the variables 
-        //   are the same type and they match. 
+        //   are the same type and the values match. 
+        
             var oneThru5 = 12345;
             var stringOneThru5 = '12345';
+            console.log(oneThru5 == stringOneThru5); // true, same value 
+            console.log(oneThru5 === stringOneThru5); // false, same value
+                                                      // but different type
             
             
         //           !== inequality & strict inequality
         //  Like equality, inequality will compare two values even if they 
-        //    are not the same type. Jacascript will attempt to compare them as the 
+        //    are not the same type. Javascript will attempt to compare them as the 
         //    same type.
               
               // two is not equal to 3        

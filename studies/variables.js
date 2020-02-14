@@ -69,7 +69,7 @@ myVariable = "someString";
 const immutable = 007;
 // immutable = 008; // will return type-error, assignment to a constant variable.
 
-// now that we know the difference between let and const we can talk about thier 
+// Now that we know the difference between let and const we can talk about their 
 // similarities, being code blocked. Like function blocked but they can also not be
 // accessed outside of if statments and for loops. 
    
@@ -99,16 +99,20 @@ var hoistedvar;
 console.log(hoistedvar); // prints 6
 
 // another example
-undefinedVar = 6;
-var undefinedVar = 001;
+var undefinedVar;
 console.log(undefinedVar); // prints undefined
+undefinedVar = 1;
+console.log(undefinedVar); // prints 1 to the console.
 
 // let and const variables are hoisted to the top of their code block as-well 
 // when declared. But they will not be accessable like with the var keyword.
 
-//
+// I had to type the below examples in comments so I would not throw errors.
+
 //notAccessable = 6; // reference error - notAccessable is not defined
 // console.log(alsoNotAccessable); // reference error
+
+
 let notAccessable;
 
 const alsoNotAccessable = 1;

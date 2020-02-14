@@ -157,8 +157,19 @@ function nonFriends(name, array) {
 //////////////////////////////////////////////////////////////////////
 
 function updateObject(object, key, value) {
-
+  // cycle though the object to check if object has 
+  // the given key
+  for (var hope in object) {
+  // if the key does match the given key then we need to 
+  // replace it with value
+   if (object.hope == key){
+     // replace the found key with value
+     delete object[key];
+   }
 }
+object.value = '';
+}
+
 
 //////////////////////////////////////////////////////////////////////
 // Function 15 - Remove Properties ///////////////////////////////////

@@ -4,31 +4,24 @@
          manipulate strings. Sometimes we just need to add one string to 
          another. This can be simply done with the + Arithmetic operator.
 */
+        let firstName = 'Jerry';
+        let nameLast = ' McDonald';
+        let fullName = firstName + nameLast;
+        console.log(fullName); // prints 'Jerry McDonald' to the console
 
-let firstName = 'Jerry';
-let nameLast = ' McDonald';
-let fullName = firstName + nameLast;
-console.log(fullName); // prints 'Jerry McDonald' to the console
-
-/*      But other times we need to do much more than that. Thankfully Javascript
-        is to the rescue. Strings are considered 'primitive' values because they 
-        do not have thier own properties or methods. But we can manipulate them
-        further than just adding two strings together. Because javascript treats 
-        strings (primitive values) as objects when executeing properties and methods.
-        Here are some useful methods and properties for strings. 
+        // When we use the + on strings, we say it is used to 'concatinate' (combine)
+        //   the strings
         
-*/
+        // We can also use the += operator as a quicker way to concatinate strings
+        
+        fullName += ', I am a student at Operation Spark.';
+        console.log(fullName); // Logs to the console:
+                               // 'Jerry Mcdonald, I am a student at Operation Spark.'
+
         // Before we begin It is important to note that these methods and properties
         // are not changing the string itself. They are returning a new string. 
         
-        
-        // .length
-        // This property will give us the length of the string (how many indexs)
-        // My favorite time to use the .length property is in a for loop, it is
-        //    great for finding a starting or stopping condition.  
-        var exampleString = 'Jerry McDonald'
-        console.log(exampleString.length); // prints 14 to the console
-        
+        var exampleString = 'Jerry McDonald';
         
         // .split()
         // say a string is just not cutting it. Why not split it up into an 
@@ -59,7 +52,7 @@ console.log(fullName); // prints 'Jerry McDonald' to the console
         console.log ('It does not match :(');
         }
         
-        doesFirstLetterMatch('j') // will print 'The first letter matches!'
+        doesFirstLetterMatch('j'); // will print 'The first letter matches!'
 
 
         // .concat() method
@@ -68,11 +61,11 @@ console.log(fullName); // prints 'Jerry McDonald' to the console
         
         var a = 'Dogs';
         var b = 'Cats';
-        var c = a.concat(' ', 'and ', b) // you can add another , to concat even more
-        console.log(c) // Prints 'Dogs and Cats' to the console.
+        var c = a.concat(' ', 'and ', b); // you can add another , to concat even more
+        console.log(c); // Prints 'Dogs and Cats' to the console.
         
         
-        //.splice()
+        //.slice()
         // Want to target a specific set of indexs in the string, then return
         // everything in that range? Well do we have a method for you!
         
@@ -109,4 +102,4 @@ console.log(fullName); // prints 'Jerry McDonald' to the console
              // this will print 8 because we began at index 30 and looked left to see the 
              // last occurance of 'watch'.
         
-        //   .replace()
+        

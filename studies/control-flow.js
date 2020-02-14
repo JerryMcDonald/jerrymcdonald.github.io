@@ -11,9 +11,6 @@
         and how they can effect the control-flow of our code. 
 
 
-
-
-
      /*1/ IF */
         // Eairler we talked about statments and control flow. Statements being
         // instruction that will be executed by the computer. One of the statements
@@ -25,10 +22,10 @@
         var num = 1234;
            // condition 
         if (num < 1500) {
-            // code block that will fun if the condition is true
+            // code block that will run if the condition is true
             console.log('Your number is less than 1500'); 
         }
-        // Javascript will pass over and not run it if statement if the condition
+        // Javascript will pass over and not run the if statement if the condition
         //  is false.
 
 
@@ -53,6 +50,10 @@
             } else if ( num > 500){
                 console.log('Your number is Greater than 500');
             }
+            
+        // It is important to note that you can have as many else if statements
+        //   in a else/ else-if chain as you would like. But only one else statement
+        //   which we will talk about below. 
         
 
      /*3/ ELSE */
@@ -74,20 +75,80 @@
             console.log ('Well so much for that job!');
         }
         
-
-
-
+        // It is important to note that you can only have one else statement
+        //   at the end of your else/ if else chain.
+        //   for example:
+        //
+        // let a = 12;
+        // if (a < 10){
+        //          console.log('Less then 10');
+        //        } else if (a < 8){
+        //          console.log('Less then 8');
+        //        } else {
+        //          console.log('Greater or equal to 10');
+        //        } else {
+        //          console.log('This code would never run');
+        //        }
+        // If you try to run the code above you will SyntazError, meaning
+        //   you are typeing something that just does not work in javascript,
+        //   in this example it is the extra else statement at the end.
+        
 
      /*4/ SWITCH  */
         // Switch Statments are handy when you have many specific conditions you would like to 
-        // check for. For example my daughter recently bought a mood ring, now if I wanted to 
+        //  check for. Before we talk about when you would use a switch statement, lets go over
+        //  the proper syntax (placement of statements and expressions) of a switch statement.
+        //
+        //   // Start your switch statement by typing switch (lowercase s)
+        //         switch 
+        //   // Then type the variable your testing, switch statments have one
+        //   //    (this is what makes them unique, switch statements compare 
+        //   //     one expression on a case by case basis.) 
+        //         switch (expression) {  // dont forget to begin your code block
+        //   // You then want to begin with your fist case condition, the
+        //   //  switch statement will compare your given expression to what
+        //   //  you have written after case. 
+        //         switch (expression) {
+                    // use : and not =
+        //          case 1:
+        //   // What comes next is the code you would like to execute if the 
+        //   //   expression matches the given case.
+        //         switch (expression) {
+        //          case 1: 
+        //             console.log('The answer is 1'); 
+        //   // You now have multiple options at this point if you would like
+        //   // to end your code after the one condition is met, you can include
+        //   // a break command to exit the switch statement 
+        //         switch (expression) {
+        //          case 1:
+        //             console.log('The answer is 1');
+        //             break; }
+        //   // If you would like to check for other conditions, include those
+        //   //  cases with their own break statements. 
+        //          switch (expression) {
+        //          case 1:
+        //             console.log('The answer is 1');
+        //             break;
+        //          case 2:
+        //             console.log('The answer is 2');
+        //             break;
+        //          case 3:
+        //          case 4:
+        //             console.log('The answer is 3 or 4');
+        //             break;
+        //             }
+        //   // In the example above we wrote code that will run if case 3
+        //   //   OR case 4 match the given expression. 
+        
+        // When would a case statement be useful? 
+        // Let us say that my daughter recently bought a mood ring, now if I wanted to 
         // develop a program that printed out her supposed mood based on the color of the ring,
         // the else, if-else chain would get fairly large. So lets make a switch statement to 
         // streamline this. 
         
-        var colorOfRing = 'Blue'
+        var colorOfRing = 'Blue';
         
-        // switch is pulling colorOfRing as it's parameter
+        // switch is pulling colorOfRing as it's expression
         switch (colorOfRing) {
             // curley brackets to identify the code block
             // we type case then the condition
@@ -121,6 +182,6 @@
         
         // So when my daughter inputs the color of her ring this switch statement
         // will print to the console 'You are very relaxed and Happy!'
-        // until I make her start her homework
+        // until I make her start her homework.
 
 
