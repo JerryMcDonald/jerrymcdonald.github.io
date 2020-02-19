@@ -73,8 +73,8 @@
         // for the conditions of splice, put the beginning index, then the index
         // thats just after the end of the string you want. 
         let sliceFirstName = exampleString.slice(0 , 6);
-        // .splice() removes the string from index 0 to 5, and returns it to
-        //  spliceFirstName. 
+        // .slice() removes the string from index 0 to 5, and returns it to
+        //  sliceFirstName. 
         console.log(sliceFirstName); // Prints Bernie
         
         // .indexOf() and lastIndexOf()
