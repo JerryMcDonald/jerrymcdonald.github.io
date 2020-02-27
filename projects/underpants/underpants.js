@@ -96,6 +96,9 @@ _.first = function(array, number) {
         return array.slice(0, number);
 };
 
+
+
+
 /** _.last
 * Arguments:
 *   1) An array
@@ -149,21 +152,21 @@ _.last = function(array, number){
 
 // Given two values
 _.indexOf = function (array, value) {
+    
+    
+    // return indexOfValue;
     // create a for loop checking each index is equal to the value
     for (let i = 0; i < array.length; i++) {
         // if the given value matchs the value at the index then return the index
         if (array[i] === value){ return i; }
     }
-    // 
+    // If the given value is not in array, then return -1
     return -1;
+    
 };
     
     
-    
-
-    
-
-
+ 
 /** _.contains
 * Arguments:
 *   1) An array
@@ -179,17 +182,15 @@ _.indexOf = function (array, value) {
 *   _.contains([1,"two", 3.14], "two") -> true
 */
 
+// Given an array and a value
 _.contains =  function (array, value) {
     
-    // Using a Ternary Operator and _.indexOf. Find out if the value
+    //  Using a Ternary Operator and _.indexOf. Find out if the value
     //  is included in the array.
     return _.indexOf(array,value) >= 0 ? true : false; 
 };  
-    
-    
 
 
- 
 
 /** _.each
 * Arguments:
@@ -210,12 +211,20 @@ _.contains =  function (array, value) {
 
 
 _.each = function(collection, action) {
+    
+    // Check if the colection is an array
     if(Array.isArray(collection)) {
+        // If it is an array then use a for loop 
         for(var i = 0; i < collection.length; i++) {
+            // perform the given function on the element, it's index, and the array 
             action(collection[i], i, collection);
         }
+        
+    // If the collection is not an array, then treat it like an object
     } else {
+        // loop through each key in the object
         for (var key in collection) {
+            // perform the given function on the value, the key, and the object
             action(collection[key], key, collection);
         }
     }
@@ -270,7 +279,7 @@ _.unique = function(array){
 *   use _.each in your implementation
 */
 
-// Given an array and a function
+
 _.filter = function (array, fun) {
     
     // make a new array to hold the true or false values from _.map();
@@ -387,14 +396,17 @@ _.partition = function (array, fun) {
 // If the collection is an array. run fun with each element, index, and collection
 // If the collection is an object, run fun with each property value, key, and collection
 // return the results into an array
+
 _.map = function(collection,fun){
+    // create a new array to hold the results
     let newArray = [];
     
-    
-    _.each(collection, function(element,index, collection){
-        newArray.push(fun(element, index, collection));
-    });
-    
+    // call the function _.each
+    // pass it the given collection and new created function
+    // the function will be pushing the results of fun into newArray
+    _.each(collection, (element, index, collection) => newArray.push(fun(element, index, collection))); 
+
+    // Done, return newArray
     return newArray;
 };
     
@@ -413,17 +425,19 @@ _.map = function(collection,fun){
 
 _.pluck = function (array, property) {
     
-    // function nest(object, key) {
-    //     return object.hasOwnProperty(key);
-    // }
+    // create newArray to hold the values of the given property
+    var newArray = [];
     
-    return _.map(array, hasOwnProperty(property));
+    // run the array though _.map while creating a function that returns the value of property
+    newArray = _.map(array, function (element, index, collection){return element[property];} );
+    
+    
+    // Done, return the new array. 
+    return newArray;
+    
+    
     
 };
-
-
-// .map returns an array all the values passed through a function
-
 
 
 
@@ -448,6 +462,26 @@ _.pluck = function (array, property) {
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
 
+_.every = function (collect, fun) {
+   
+   // If fun is not provided or is not a function then...
+   if (typeof(fun) !== 'function') {
+      // run _.contains on collect and see if false if one of the elements 
+      // in collect are falsey
+      return !_.contains(collect, false); 
+   }
+   
+    // create a new array to hold the true and false values
+    var newArray = [];
+    
+    // pass to newArray the results of running fun on each element in collect
+    // using the _.map function
+    newArray = _.map(collect, fun);
+    
+    // When complete return false if even one of the values in newArray is false
+    return !_.contains(newArray, false);
+};
+
 
 /** _.some
 * Arguments:
@@ -470,6 +504,26 @@ _.pluck = function (array, property) {
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 
+_.some = function(collect, fun){
+    
+    // If no function is provided then..
+    if (typeof(fun) !== 'function') {
+      // run _.contains on the collection and see if the elements are truthy
+      return _.contains(collect, true); 
+   }
+   
+    // Create a new array to hold the returned trues and falses
+    var newArray = [];
+    
+    // use the _.map function to run fun on each element and return the 
+    // values to newArray
+    newArray = _.map(collect, fun);
+    
+    // Now that we have our array of trues and falses we can check if at least 
+    // one of the values are true
+    return _.contains(newArray, true);
+};
+
 
 /** _.reduce
 * Arguments:
@@ -490,6 +544,36 @@ _.pluck = function (array, property) {
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
 
+        // I want to call each in the function
+        // I want to run the given function on each element
+        // I want to reduce it to one element (accumulator)
+        // Each takes a collection and a function that will be ran on each element
+        // I will need to create a function that will passed to each
+        // that will accumulate each element into one value with the rFun function
+        // the collection that ._each() will take is array
+        // the function that i want to make will run rFun on each element
+        // passing result to accumlator, I am not using seed in the first callback
+        // each takes the element index and array
+
+
+_.reduce = function(array, rFun, seed){
+    
+    // Our accumulator
+    var accumulator;
+    
+    // accumulator will hold the correct value even if there is no seed. 
+    seed == undefined ?  accumulator = array[0] : accumulator = rFun(seed, array[0], 0);
+    
+    // call back each, pass the return of rFun into accumulator starting at index 1. 
+    _.each(array, (element, index, collection) => { if (index != 0) {accumulator = rFun(accumulator, element, index )}}); 
+    
+    // Done, return accumulator 
+    return accumulator;  
+    
+    
+};       
+        
+
 
 /** _.extend
 * Arguments:
@@ -505,6 +589,23 @@ _.pluck = function (array, property) {
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+
+
+_.extend = function (...array){
+   
+  
+   // loop through the array of Objects
+   for (let i = 1; i < array.length; i++){
+       
+         // use the assign method to replace the first object the others
+         Object.assign(array[0], array[i]);
+     }
+     
+     // Done, return the first array.
+     return array[0];
+   };
+  
+
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
