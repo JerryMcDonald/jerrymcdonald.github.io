@@ -292,7 +292,7 @@ var topThreeTags = function (array){
         } 
     });
     
-    // Lord Jesus thank you for giving me the wisom to do this. 
+    // Lord Jesus thank you for giving me the wisdom to do this. 
     return topThree;
 };
 
