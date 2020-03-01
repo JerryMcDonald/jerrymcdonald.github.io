@@ -284,6 +284,7 @@ _.filter = function (array, fun) {
     
     // make a new array to hold the true or false values from _.map();
     // _.each should return an array of true and false
+    console.log(fun);
     let newTFArray = _.map(array, fun);
     
     // Make a new array to hold those values that return true
