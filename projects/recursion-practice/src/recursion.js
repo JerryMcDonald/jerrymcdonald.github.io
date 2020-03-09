@@ -34,8 +34,36 @@ var sum = function(array) {
 
 // 3. Sum all numbers in an array containing nested arrays.
 // Example: arraySum([1,[2,3],[[4]],5]); // 15
-var arraySum = function(array) {
-};
+var arraySum = function(arrays, newArray = [], count = 0) {
+
+  // if count is 0 then we need to flatten
+  if (count === 0) {
+
+  // we will have to flatten 
+  // assign the flattened array to newArray
+  newArray = arrays.reduce((accum, next) => {
+  // next will be our first element
+  // check if next is an array
+  return accum.concat(Array.isArray(next) ? 
+  // if next is any array then I need to use recursion
+  arraySum(next):
+  // else concat the element
+  next);
+}, []);
+
+  }
+
+  // Now we should have a smooth array to add together (newArray)
+  
+  // Base case will be no more newArray
+    if (newArray.length === 0) {
+    return 0;
+  }
+
+  // GOGO recursion on our newArray. adding the numbers
+  return newArray[0] + arraySum(arrays, newArray.slice(1), 1);
+
+  };
 
 // 4. Check if a number is even.
 var isEven = function(n) {
@@ -187,8 +215,49 @@ var palindrome = function(string) {
 // modulo(5,2) // 1
 // modulo(17,5) // 2
 // modulo(22,6) // 4
-var modulo = function(x, y) {
+// No Psudo allowed inside
+
+// if both are zero return NaN
+// if both are neg, run normal code but make negCount = -1
+// if x is neg, make y pos but negCount = -1
+// if y is neg, add x and y, then make y pos. then normal code will work
+// base case will be x < y, factor in nedCount
+var modulo = function(x, y, negCount = 1) {
+  
+  
+  if (x === 0 && y === 0) {
+    return NaN;
+  }
+  
+  
+  if (x < 0 && y < 0) {
+    return modulo(-x, -y, -1);
+  }
+
+
+ 
+  if (x < 0) {
+    return modulo(-x, y, -1);
+  }
+
+  
+  if (y < 0){
+    return modulo(x + y, -y, negCount);
+  }
+
+
+  if (x < y) {
+    return negCount === 1 ? x : -x;
+  }
+  
+  return modulo(x - y, y, negCount);
+  
+  
 };
+
+
+
+
 
 // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object.
@@ -216,15 +285,86 @@ var multiply = function(x, y,) {
 
 // 13. Write a function that divides two numbers without using the / operator  or
 // JavaScript's Math object.
-var divide = function(x, y) {
+
+// No Psudo allowed in the code block
+// check for negatives on both numbers and on each individual
+// add one to the count while subtracting y from x
+// return count
+var divide = function(x, y, count = 0, isNeg = 0) {
+    
+  if (x < 0 && y < 0) {
+    x = -x;
+    y = -y;
+  }
+  
+  if (x < 0) {
+    isNeg = 1;
+    x = -x;
+  }
+
+  if (y < 0) {
+    isNeg = 1;
+    y = -y;
+  }
+  
+  if (x === 0 && y === 0) {
+    return NaN;
+  }
+  
+  if (x === 0 || y === 0) {
+    return 0;
+  }
+  
+
+  if ( x === y) {
+    return count + 1;
+  }
+  
+  if (x > y) {
+    return divide(x - y, y, count + 1);
+  }
+  
+  if (x < y && isNeg === 0) {
+    return count;
+    
+  }
+
+  if (x < y && isNeg === 1) {
+    return count;
+    
+  }
+
 };
+
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers.  The GCD of two
 // integers is the greatest integer that divides both x and y with no remainder.
 // Example:  gcd(4,36);  // 4
 // http://www.cse.wustl.edu/~kjg/cse131/Notes/Recursion/recursion.html
 // https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
-var gcd = function(x, y) {
+var gcd = function(x, y, counter = 1, answer = 0) {
+  
+// check for negative values
+if (x < 0 || y < 0) {
+  return null;
+}
+
+// if counter is a common is a common divisor of both, then answer is replaced by our counter
+if (x % counter === 0 && y % counter === 0) {
+  answer = counter;
+}
+
+// base case will be our counter reaching our x or y
+if (x === counter || y === counter){
+  return answer;
+}
+
+// add one to the counter so we do not go to hugh
+counter = counter + 1;
+
+// gogo recursion, be sure to send our current counter and answer
+return gcd(x, y, counter, answer);
+
 };
 
 // 15. Write a function that compares each character of two strings and returns true if
@@ -321,19 +461,95 @@ var rMap = function(array, callback) {
 // var testobj = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
 // countKeysInObj(testobj, 'r') // 1
 // countKeysInObj(testobj, 'e') // 2
-var countKeysInObj = function(obj, key) {
+var countKeysInObj = function(obj, key1, totalKeys = 0) {
+  // the base case will be no more keys
+  if (Object.keys(obj).length === 0) {
+    return totalKeys;
+  }
+
+  // Loop through the keys
+  for (var key in obj) {
+    // check if the current value is an object
+    if (typeof(obj[key]) === 'object') {
+      // use recursion to go one level deeper
+      totalKeys = countKeysInObj(obj[key], key1, totalKeys);
+    } 
+
+    // if the current element is not an object we will check the key
+    if (key === key1) {
+      totalKeys = totalKeys + 1;
+    } 
+
+
+  }
+  // We will reach this code when all other operations are complete
+  return totalKeys;
+
 };
 
 // 22. Write a function that counts the number of times a value occurs in an object.
 // var testobj = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
 // countValuesInObj(testobj, 'r') // 2
 // countValuesInObj(testobj, 'e') // 1
-var countValuesInObj = function(obj, value) {
+var countValuesInObj = function(obj, value, totalValues = 0) {
+ // the base case will be no more keys
+  if (Object.keys(obj).length === 0) {
+    return totalValues;
+  }
+
+  // Loop through the keys
+  for (var key in obj) {
+    // check if the current value is an object
+    if (typeof(obj[key]) === 'object') {
+      // use recursion to go one level deeper
+      totalValues = countValuesInObj(obj[key], value, totalValues);
+    } 
+
+    // if the current element is not an object we will check the value
+    if (obj[key] === value) {
+      totalValues = totalValues + 1;
+    } 
+
+
+  }
+  // We will reach this code when all other operations are complete
+  return totalValues;
+
 };
 
 // 23. Find all keys in an object (and nested objects) by a provided name and rename
 // them to a provided new name while preserving the value stored at that key.
-var replaceKeysInObj = function(obj, key, newKey) {
+  
+var replaceKeysInObj = function(obj, key1, newKey, newObj = {}) {
+  
+  // the base case will be no more keys
+  if (Object.keys(obj).length === 0) {
+    return {};
+  }
+
+  for (var key in obj) {
+    // check if the key matches key1
+    if (key === key1) {
+      // then check if the value is an object
+      if (typeof(obj[key]) === 'object') {
+        // if they matched we need to replace the key 
+        // and set the value to the object
+        newObj[newKey] = replaceKeysInObj(obj[key], key1, newKey);
+      }
+        // else we need to just replace the key and add the value
+        newObj[newKey] = obj[key];
+    } else {
+      // check if the value is an object
+      if (typeof(obj[key]) === 'object') {
+        // we need to dup the key and the object
+        newObj[key] = replaceKeysInObj(obj[key], key1, newKey);
+      } else {
+        // if value is not an object we need to dup the key value pair
+        newObj[key] = obj[key];
+      }
+    }
+  }
+  return newObj;
 };
 
 // 24. Get the first n Fibonacci numbers.  In the Fibonacci Sequence, each subsequent
@@ -341,7 +557,29 @@ var replaceKeysInObj = function(obj, key, newKey) {
 // Example:  0, 1, 1, 2, 3, 5, 8, 13, 21, 34.....
 // fibonacci(5);  // [0, 1, 1, 2, 3, 5]
 // Note:  The 0 is not counted.
-var fibonacci = function(n) {
+var fibonacci = function(n, fiboArr = [0, 1]) {
+
+  // if n is negative or zero return null
+  if (n <= 0) {
+    return null;
+  }
+  
+  // account for those pesky zeros wanting to mess up my code
+  if (n === 0) {
+    return 0;
+  }
+  
+  // stop the recursion when fiboArr is correct length
+  if (n === fiboArr.length - 1) {
+    // return the desired index
+    return fiboArr;
+  }
+
+// add the last two index together to make the next index
+fiboArr.push(fiboArr[fiboArr.length - 1] + fiboArr[fiboArr.length - 2]);
+
+// gogo recursion to make our Fibonacci array
+return fibonacci(n, fiboArr);
 };
 
 // 25. Return the Fibonacci number located at index n of the Fibonacci sequence.
@@ -356,6 +594,7 @@ var nthFibo = function(n, fiboArr = [0, 1]) {
     return null;
   }
   
+  // account for those pesky zeros wanting to mess up my code
   if (n === 0) {
     return 0;
   }
@@ -426,34 +665,48 @@ var capitalizeFirst = function(array) {
 // Given an object with nested objects
 // return the sum of all even elements
 var nestedEvenSum = function(obj, sum = 0) {
-// the base case will be no more keys
-// if (Object.keys(obj).length === 0) {
-//   // at the end of my object recursion I want to return the sum
-//   return sum;
-// } 
+//the base case will be no more keys
+if (Object.keys(obj).length === 0) {
+  // at the end of my object recursion I want to return the sum
+  return sum;
+} 
 
-// // Loop through the keys 
-// for (var key in obj) {
-// // check if the key is an object
-// if (typeof(obj[key]) === 'object') {
-// sum = nestedEvenSum(obj[key], sum);
-// }
-// // If the current element is not a key then check if it is even
-// if (obj[key] % 2 === 0) {
-//   // if it is even we need to add it to the sum
-//   sum = sum + obj[key];
-// }
+// Loop through the keys 
+for (var key in obj) {
+// check if the key is an object
+if (typeof(obj[key]) === 'object') {
+sum = nestedEvenSum(obj[key], sum);
+}
+// If the current element is not an object then check if it is even
+if (obj[key] % 2 === 0) {
+  // if it is even we need to add it to the sum
+  sum = sum + obj[key];
+}
 
-// }
-// // This is the final end of the function
-// return sum;
+}
+// This is the final end of the function
+return sum;
 
 };
 
 
 // 29. Flatten an array containing nested arrays.
 // Example: flatten([1,[2],[3,[[4]]],5]); // [1,2,3,4,5]
-var flatten = function(arrays) {
+var flatten = function(arrays, newArray = []) {
+
+// assign the flattened array to newArray
+newArray = arrays.reduce((accum, next) => {
+  // next will be our first element
+  // check if next is an array
+  return accum.concat(Array.isArray(next) ? 
+  // if next is any array then I need to use recursion
+  flatten(next):
+  // else concat the element
+  next);
+}, []);
+
+
+return newArray;
 };
 
 // 30. Given a string, return an object containing tallies of each letter.
